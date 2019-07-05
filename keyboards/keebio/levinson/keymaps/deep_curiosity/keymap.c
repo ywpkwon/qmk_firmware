@@ -34,7 +34,7 @@ enum custom_keycodes {
   ADJUST,
 };
 
-//Tap Dance Declarations
+// Tap Dance Declarations
 enum {
   TD_TAB_GRV = 0
 };
@@ -203,7 +203,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
 
-//Tap Dance Definitions
+// Tap Dance Definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_TAB_GRV]  = ACTION_TAP_DANCE_DOUBLE(KC_TAB, KC_GRV)
 // Other declarations would go here, separated by commas, if you have them
