@@ -1,3 +1,5 @@
+#BOOTLOADER = caterina
+BOOTLOADER = atmel-dfu
 RGBLIGHT_ENABLE = yes
 BACKLIGHT_ENABLE = yes
 TAP_DANCE_ENABLE = yes
