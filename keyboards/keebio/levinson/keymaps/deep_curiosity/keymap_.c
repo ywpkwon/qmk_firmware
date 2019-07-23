@@ -42,7 +42,7 @@ enum {
 #define NUMERIC MO(_NUMERIC)
 #define SYMBOLIC MO(_SYMBOLIC)
 #define NAVI MO(_NAVI)
-#define ADJUST MO(_ADJUST)
+// #define ADJUST MO(_ADJUST)
 #define _LOWER _NUMERIC
 #define _RAISE _SYMBOLIC
 
@@ -66,9 +66,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_QWERTY] = LAYOUT_ortho_4x12( \
     TD(TD_TAB_GRV),  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
-    CTL_T(KC_ESC), LT(_NAVI, KC_A),    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,   LT(_NAVI, KC_SCLN), CTL_T(KC_ENT),
+    CTL_T(KC_ESC), KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,   LT(_NAVI, KC_SCLN), CTL_T(KC_ENT),
     OSM(MOD_LSFT), KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  OSM(MOD_LSFT),
-    ADJUST, KC_LGUI,  KC_LCTL,   KC_LALT, LT(_NUMERIC, KC_SPC),   LT(_NUMERIC, KC_SPC),  LT(_SYMBOLIC, KC_BSPC),  LT(_SYMBOLIC, KC_BSPC),   KC_LALT, KC_RCTL, KC_RGUI, LT(_NAVI, KC_ENT)
+    NAVI, KC_LGUI,  KC_LCTL,   KC_LALT, LT(_NUMERIC, KC_SPC),   KC_SPC,  KC_BSPC,  LT(_SYMBOLIC, KC_BSPC),   KC_LALT, KC_RCTL, KC_RGUI, LT(_NAVI, KC_ENT)
 ),
 
 
@@ -87,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,  KC_1,  KC_2,  KC_3,  KC_4,  KC_5,  KC_6,  KC_7,  KC_8,  KC_9,  KC_0,  ___,
     ___,  KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  _x_,  KC_4,  KC_5,  KC_6,  ___,  ___,
     ___,  KC_F6,  KC_F7,  KC_F8,  KC_F9,  KC_F10,  KC_F11,  KC_1,  KC_2,  KC_3,  ___,  ___,
-    ___,  ___,  ___,  ___,  ___,  ___,  KC_BSPC, KC_BSPC,  KC_0,  KC_DOT,  ___,  ___
+    ___,  ___,  ___,  ___,  ___,  KC_BSPC,  KC_BSPC, ___,  KC_0,  KC_DOT,  ___,  ___
 ),
 
 /* Symbolic
@@ -105,7 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR,    KC_ASTR,    KC_MINS,  KC_PLUS,  KC_BSLS,
     ___,  KC_LABK,  KC_LBRC,  KC_LCBR,  KC_LPRN,  KC_QUOT,  KC_DOUBLE_QUOTE,  KC_RPRN,  KC_RCBR,  KC_RBRC,  KC_RABK,  KC_PIPE,
     ___,  _x_,  _x_,  _x_,  KC_PLUS,  _x_,  _x_,  KC_EQL,  _x_,  _x_,  _x_,  ___,
-    ___,  ___,  ___,  ___,  KC_DEL,  KC_DEL,  ___, ___,  ___,  ___,  ___,  ___
+    ___,  ___,  ___,  ___,  ___,  KC_DEL,  KC_DEL, ___,  ___,  ___,  ___,  ___
 ),
 
 
@@ -130,21 +130,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Adjust (Lower + Raise)
  * ,-----------------------------------------------------------------------------------.
- * |      | Reset|      |      |      |      |      |      |      |      |      |      |
+ * |      | Reset|      |      |      |      |      |      |      |      |      |  Del |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |      |      |Aud on|Audoff|AGnorm|AGswap|      |      |      |      |      |
+ * |      |      |      |Aud on|Audoff|AGnorm|AGswap|      |      |Dvorak|      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      | Hue+ | Hue- | Sat+ | Sat- | Brt+ | Brt- |      |      |      |      |      |
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |             |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_ADJUST] =  LAYOUT_ortho_4x12( \
-  _______, RESET,   BL_TOGG, RGB_TOG, RGB_MODE_FORWARD, RGB_MODE_PLAIN, RGB_MODE_SWIRL, _______, _______, _______, _______, _______, \
+  _______, RESET,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  _______, _______,  _______, _______, \
-  _______, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, _______, _______, _______, _______, _______, \
-  _______, _______, _______, _______, _______, _______, _______, _______, KC_RALT, _______, _______, _______ \
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
 )
+
 
 };
 
