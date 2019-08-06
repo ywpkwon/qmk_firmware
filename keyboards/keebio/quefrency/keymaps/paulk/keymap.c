@@ -33,7 +33,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS, \
     CTL_T(KC_ESC), LT(_FN1, KC_A),    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,  LT(_FN1, KC_SCLN), KC_QUOT, CTL_T(KC_ENT), \
     KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, MO(_FN1), \
-    CTL_T(KC_ENT),  KC_LGUI, MO(_FN1), KC_LALT, KC_SPC,          KC_BSPC,  _______, KC_LEFT, KC_DOWN,  KC_UP, _______, KC_RGHT \
+    CTL_T(KC_ENT),  KC_LGUI, MO(_FN1), KC_LALT, KC_SPC,          KC_BSPC,  _______, KC_LEFT, KC_DOWN,  _______, KC_UP, KC_RGHT \
   ),
 
     /*
@@ -54,6 +54,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,  _______, KC_BTN1, KC_MS_U, KC_BTN2, KC_WH_U, KC_PGUP, KC_HOME, KC_UP,   KC_END,  _______, _______, _______, _______, \
     _______,  _______, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______, \
     _______,  RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______, _______, \
-    RGB_TOG, RGB_MODE_FORWARD, _______, KC_RALT, _______,          KC_DEL, _______, KC_HOME, KC_PGDN, KC_PGUP, _______, KC_END \
+    RGB_TOG, RGB_MODE_FORWARD, _______, KC_RALT, _______,          KC_DEL, _______, KC_HOME, KC_PGDN, _______, KC_PGUP, KC_END \
   )
 };
