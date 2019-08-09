@@ -17,6 +17,11 @@ extern rgblight_config_t rgblight_config;
 
 extern uint8_t is_master;
 
+// Tap Dance Declarations
+enum {
+  TD_TAB_GRV = 0
+};
+
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
@@ -24,7 +29,9 @@ extern uint8_t is_master;
 #define _QWERTY 0
 #define _LOWER 1
 #define _RAISE 2
-#define _ADJUST 3
+#define _NAVI 3
+#define _ADJUST 4
+
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
@@ -53,44 +60,60 @@ enum macro_keycodes {
 #define KC_LVAI  RGB_VAI
 #define KC_LVAD  RGB_VAD
 #define KC_LMOD  RGB_MOD
+#define KC_CTLEC CTL_T(KC_ESC)
+#define KC_CTLET CTL_T(KC_ENT)
 #define KC_CTLTB CTL_T(KC_TAB)
 #define KC_GUIEI GUI_T(KC_LANG2)
 #define KC_ALTKN ALT_T(KC_LANG1)
+#define KC_TD_TABGR TD(TD_TAB_GRV)
+#define KC_NAVIM MO(_NAVI)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-        ESC,     Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  BSPC,\
+   TD_TABGR,     Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P, BSPC,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      CTLTB,     A,     S,     D,     F,     G,                      H,     J,     K,     L,  SCLN,  QUOT,\
+      CTLEC,     A,     S,     D,     F,     G,                      H,     J,     K,     L,  SCLN, CTLET,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT,     Z,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH,  RSFT,\
+       LSFT,     Z,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH, RSFT,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  GUIEI, LOWER,   SPC,      ENT, RAISE, ALTKN \
+                                   LALT, LOWER,   SPC,     BSPC, RAISE, NAVIM \
                               //`--------------------'  `--------------------'
   ),
 
   [_LOWER] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-        ESC,     1,     2,     3,     4,     5,                      6,     7,     8,     9,     0,  BSPC,\
+      _____,     1,     2,     3,     4,     5,                      6,     7,     8,     9,     0,  BSPC,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      CTLTB,    F1,    F2,    F3,    F4,    F5,                     F6,    F7,    F8,    F9,   F10, XXXXX,\
+      _____,    F1,    F2,    F3,    F4,    F5,                    F11,     4,     5,     6, _____, XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT,   F11,   F12,   F13,   F14,   F15,                    F16,   F17,   F18,   F19,   F20, XXXXX,\
+      _____,    F6,    F7,    F8,    F9,   F10,                    F12,     1,     2,     3, _____, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  GUIEI, LOWER,   SPC,      ENT, RAISE, ALTKN \
+                                  _____, LOWER, _____,      DEL, RAISE,     0 \
                               //`--------------------'  `--------------------'
   ),
 
   [_RAISE] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-        ESC,  EXLM,    AT,  HASH,   DLR,  PERC,                   CIRC,  AMPR,  ASTR,  LPRN,  RPRN,  BSPC,\
+        GRV,  EXLM,    AT,  HASH,   DLR,  PERC,                   CIRC,  AMPR,  ASTR,  MINS,   EQL,  BSLS,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      CTLTB, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                   MINS,   EQL,  LCBR,  RCBR,  PIPE,   GRV,\
+      _____,  LABK,  LBRC,  LCBR,  LPRN,  QUOT,           DOUBLE_QUOTE,  RPRN,  RBRC,  RCBR,  RABK,  PIPE,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                   UNDS,  PLUS,  LBRC,  RBRC,  BSLS,  TILD,\
+      _____, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  GUIEI, LOWER,   SPC,      ENT, RAISE, ALTKN \
+                                  ALTKN, LOWER, _____,    _____, RAISE, _____ \
+                              //`--------------------'  `--------------------'
+  ),
+
+  [_NAVI] = LAYOUT_kc( \
+  //,-----------------------------------------.                ,-----------------------------------------.
+      XXXXX, XXXXX,  BTN1,  MS_U,  BTN2,  WH_U,                   PGUP,  HOME,    UP,   END, XXXXX, XXXXX,\
+  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
+      _____, XXXXX,  MS_L,  MS_D,  MS_R,  WH_D,                   PGDN,  LEFT,  DOWN,  RGHT, XXXXX, _____,\
+  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
+      _____, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, _____,\
+  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
+                                  _____, LOWER, _____,    _____, RAISE, _____ \
                               //`--------------------'  `--------------------'
   ),
 
@@ -102,7 +125,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  GUIEI, LOWER,   SPC,      ENT, RAISE, ALTKN \
+                                  _____, LOWER, _____,    _____, RAISE, _____ \
                               //`--------------------'  `--------------------'
   )
 };
@@ -246,3 +269,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   return true;
 }
+
+// Tap Dance Definitions
+qk_tap_dance_action_t tap_dance_actions[] = {
+  [TD_TAB_GRV]  = ACTION_TAP_DANCE_DOUBLE(KC_TAB, KC_GRV)
+// Other declarations would go here, separated by commas, if you have them
+};

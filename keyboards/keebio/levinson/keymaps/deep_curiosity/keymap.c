@@ -48,7 +48,8 @@ enum {
 
 // Key aliases
 #define ___ KC_TRNS
-#define _x_ KC_NO
+#define xxx KC_NO
+#define KC_ALTKN ALT_T(KC_LANG1)
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -61,14 +62,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  | Shift|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |Adjust|  OS  | Alt  | Ctrl |Lower |    Space    |Raise | Ctrl |  Alt |  OS  |Adjust|
+ * |Adjust|  OS  | Alt  | Ctrl |Lower |    Space    |Raise | Left | Down |  Up  | Right|
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_ortho_4x12( \
     TD(TD_TAB_GRV),  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
     CTL_T(KC_ESC), LT(_NAVI, KC_A),    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,   LT(_NAVI, KC_SCLN), CTL_T(KC_ENT),
     OSM(MOD_LSFT), KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  OSM(MOD_LSFT),
-    ADJUST, KC_LGUI,  KC_LCTL,   KC_LALT, LT(_NUMERIC, KC_SPC),   LT(_NUMERIC, KC_SPC),  LT(_SYMBOLIC, KC_BSPC),  LT(_SYMBOLIC, KC_BSPC),   KC_LALT, KC_RCTL, KC_RGUI, LT(_NAVI, KC_ENT)
+    ADJUST, KC_LGUI,  KC_LCTL,   KC_LALT, LT(_NUMERIC, KC_SPC),   LT(_NUMERIC, KC_SPC),  LT(_SYMBOLIC, KC_BSPC),  LT(_SYMBOLIC, KC_BSPC),   KC_LEFT, KC_DOWN, KC_UP, KC_RGHT
 ),
 
 
@@ -85,8 +86,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_NUMERIC] = LAYOUT_ortho_4x12( \
     KC_ESC,  KC_1,  KC_2,  KC_3,  KC_4,  KC_5,  KC_6,  KC_7,  KC_8,  KC_9,  KC_0,  ___,
-    ___,  KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  _x_,  KC_4,  KC_5,  KC_6,  ___,  ___,
-    ___,  KC_F6,  KC_F7,  KC_F8,  KC_F9,  KC_F10,  KC_F11,  KC_1,  KC_2,  KC_3,  ___,  ___,
+    ___,  KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F11,  KC_4,  KC_5,  KC_6,  ___,  ___,
+    ___,  KC_F6,  KC_F7,  KC_F8,  KC_F9,  KC_F10,  KC_F12,  KC_1,  KC_2,  KC_3,  ___,  ___,
     ___,  ___,  ___,  ___,  ___,  ___,  KC_BSPC, KC_BSPC,  KC_0,  KC_DOT,  ___,  ___
 ),
 
@@ -102,10 +103,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_SYMBOLIC] = LAYOUT_ortho_4x12( \
-    KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR,    KC_ASTR,    KC_MINS,  KC_PLUS,  KC_BSLS,
+    KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR,    KC_ASTR,    KC_MINS,  KC_EQL,  KC_BSLS,
     ___,  KC_LABK,  KC_LBRC,  KC_LCBR,  KC_LPRN,  KC_QUOT,  KC_DOUBLE_QUOTE,  KC_RPRN,  KC_RCBR,  KC_RBRC,  KC_RABK,  KC_PIPE,
-    ___,  _x_,  _x_,  _x_,  KC_PLUS,  _x_,  _x_,  KC_EQL,  _x_,  _x_,  _x_,  ___,
-    ___,  ___,  ___,  ___,  KC_DEL,  KC_DEL,  ___, ___,  ___,  ___,  ___,  ___
+    ___,  xxx,  xxx,  xxx,  KC_PLUS,  xxx,  xxx,  KC_EQL,  xxx,  xxx,  xxx,  ___,
+    ___,  ___,  ___,  KC_ALTKN,  KC_DEL,  KC_DEL,  ___, ___,  ___,  ___,  ___,  ___
 ),
 
 
@@ -121,9 +122,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_NAVI] = LAYOUT_ortho_4x12( \
-    KC_GRV, _x_, KC_BTN1,  KC_MS_U,  KC_BTN2,  KC_WH_U, KC_PGUP,  KC_HOME,  KC_UP,  KC_END,  ___,  ___,
-    ___,  _x_, KC_MS_L,  KC_MS_D,  KC_MS_R,  KC_WH_D, KC_PGDN,  KC_LEFT,  KC_DOWN,  KC_RGHT,  ___,  ___,
-    ___,  _x_,  _x_,  _x_,  _x_,  _x_,  _x_,  _x_,  _x_,  _x_,  _x_,  ___,
+    KC_GRV, xxx, KC_BTN1,  KC_MS_U,  KC_BTN2,  KC_WH_U, KC_PGUP,  KC_HOME,  KC_UP,  KC_END,  ___,  ___,
+    ___,  xxx, KC_MS_L,  KC_MS_D,  KC_MS_R,  KC_WH_D, KC_PGDN,  KC_LEFT,  KC_DOWN,  KC_RGHT,  ___,  ___,
+    ___,  xxx,  xxx,  xxx,  xxx,  xxx,  xxx,  xxx,  xxx,  xxx,  xxx,  ___,
     ___,  ___,  ___,  ___,  ___,  ___,  ___,  ___,  ___,  ___,  ___,  ___
 ),
 
