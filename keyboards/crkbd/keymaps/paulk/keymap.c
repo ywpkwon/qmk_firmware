@@ -67,17 +67,22 @@ enum macro_keycodes {
 #define KC_ALTKN ALT_T(KC_LANG1)
 #define KC_TD_TABGR TD(TD_TAB_GRV)
 #define KC_NAVIM MO(_NAVI)
+#define KC_NAVIA LT(_NAVI, KC_A)
+#define KC_NAVISC LT(_NAVI, KC_SCLN)
+#define KC_LO_SPC LT(_LOWER, KC_SPC)
+#define KC_RI_BSC LT(_RAISE, KC_BSPC)
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
    TD_TABGR,     Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P, BSPC,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      CTLEC,     A,     S,     D,     F,     G,                      H,     J,     K,     L,  SCLN, CTLET,\
+      CTLEC, NAVIA,     S,     D,     F,     G,                      H,     J,     K,     L,NAVISC, CTLET,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSFT,     Z,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH, RSFT,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                   LALT, LOWER,   SPC,     BSPC, RAISE, NAVIM \
+                                   LALT,LO_SPC,   SPC,     BSPC,RI_BSC, NAVIM \
                               //`--------------------'  `--------------------'
   ),
 
