@@ -71,7 +71,7 @@ enum macro_keycodes {
 #define KC_NAVISC LT(_NAVI, KC_SCLN)
 #define KC_LO_SPC LT(_LOWER, KC_SPC)
 #define KC_RI_BSC LT(_RAISE, KC_BSPC)
-
+#define KC_OS_ALT OSM(MOD_LALT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_kc( \
@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSFT,     Z,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH, RSFT,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                   LALT,LO_SPC,   SPC,     BSPC,RI_BSC, NAVIM \
+                               OS_ALT, LO_SPC,   SPC,     BSPC,RI_BSC, NAVIM \
                               //`--------------------'  `--------------------'
   ),
 
@@ -102,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------.                ,-----------------------------------------.
         GRV,  EXLM,    AT,  HASH,   DLR,  PERC,                   CIRC,  AMPR,  ASTR,  MINS,   EQL,  BSLS,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      _____,  LABK,  LBRC,  LCBR,  LPRN,  QUOT,           DOUBLE_QUOTE,  RPRN,  RBRC,  RCBR,  RABK,  PIPE,\
+      _____,  LABK,  LBRC,  LCBR,  LPRN,  QUOT,           DOUBLE_QUOTE,  RPRN,  RCBR,  RBRC,  RABK,  PIPE,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
       _____, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
